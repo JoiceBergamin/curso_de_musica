@@ -29,10 +29,10 @@ public enum Status {
         this.situacaoStatus = situacaoStatus;
     }
 
-    public static Status toEnum(Integer idStatus){
-        if(idStatus==null) return null;
+    public static Status toEnum(Integer id){
+        if(id==null) return null;
         for(Status s : Status.values()){
-            if(idStatus.equals(s.getIdStatus())){
+            if(id.equals(s.getIdStatus())){
             return s;
             }
         } throw new IllegalArgumentException("Status inválido");
