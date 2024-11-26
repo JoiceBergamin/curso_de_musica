@@ -2,14 +2,34 @@ package com.desenvolvimento.domains;
 
 
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Objects;
 
+@Entity
+@Table(name="aluno")
 
 public class Aluno {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_aluno")
     private Integer idAluno;
+
+    @NotNull @NotBlank
     private String nomeAluno;
+
+    @NotNull
+    @Digits(integer = 11, fraction = 0)
     private Integer cpfAluno;
+
+    @NotNull @NotBlank
     private String emailAluno;
+
+    @NotNull @NotBlank
+    @Digits(integer = 7, fraction = 0)
     private String raAluno;
 
     public Aluno() {
@@ -31,35 +51,35 @@ public class Aluno {
         this.idAluno = idAluno;
     }
 
-    public String getNomeAluno() {
+    public @NotNull @NotBlank String getNomeAluno() {
         return nomeAluno;
     }
 
-    public void setNomeAluno(String nomeAluno) {
+    public void setNomeAluno(@NotNull @NotBlank String nomeAluno) {
         this.nomeAluno = nomeAluno;
     }
 
-    public Integer getCpfAluno() {
+    public @NotNull @Digits(integer = 11, fraction = 0) Integer getCpfAluno() {
         return cpfAluno;
     }
 
-    public void setCpfAluno(Integer cpfAluno) {
+    public void setCpfAluno(@NotNull @Digits(integer = 11, fraction = 0) Integer cpfAluno) {
         this.cpfAluno = cpfAluno;
     }
 
-    public String getEmailAluno() {
+    public @NotNull @NotBlank String getEmailAluno() {
         return emailAluno;
     }
 
-    public void setEmailAluno(String emailAluno) {
+    public void setEmailAluno(@NotNull @NotBlank String emailAluno) {
         this.emailAluno = emailAluno;
     }
 
-    public String getRaAluno() {
+    public @NotNull @NotBlank @Digits(integer = 7, fraction = 0) String getRaAluno() {
         return raAluno;
     }
 
-    public void setRaAluno(String raAluno) {
+    public void setRaAluno(@NotNull @NotBlank @Digits(integer = 7, fraction = 0) String raAluno) {
         this.raAluno = raAluno;
     }
 
@@ -76,3 +96,5 @@ public class Aluno {
         return Objects.hash(idAluno, nomeAluno, cpfAluno, emailAluno, raAluno);
     }
 }
+/* ANOTAÇÕES:
+ * Esta classe representa uma das entidades da aplicação*/

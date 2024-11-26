@@ -2,25 +2,60 @@ package com.desenvolvimento.domains;
 
 import com.desenvolvimento.domains.enums.Dificuldade;
 import com.desenvolvimento.domains.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "curso")
 public class Curso {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_curso")
     private Long idCurso;
+
+    @NotNull @NotBlank
     private String nomeCurso;
+
+   @NotNull @NotBlank
     private String urlCurso;
+
+    @NotNull @NotBlank
     private String descricaoCurso;
+
+    @NotNull @NotBlank
     private String cargaHorariaCurso;
-    private LocalDate dataInicioCurso;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDate dataInicioCurso = LocalDate.now();
+
+    @NotNull @NotBlank
     private String categoriaCurso;
+
+    @ManyToOne
+    @JoinColumn(name = "idaluno")
+    private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name="idinstrutor")
+    private Instrutor instrutor;
+
+    @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "dificuldadedocurso")
     private Dificuldade dificuldadeCurso;
+
+    @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "statusdocurso")
     private Status statusCurso;
 
     public Curso() {
     }
 
-    public Curso(Long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Dificuldade dificuldadeCurso, Status statusCurso) {
+    public Curso(Long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Aluno aluno, Instrutor instrutor, Dificuldade dificuldadeCurso, Status statusCurso) {
         this.idCurso = idCurso;
         this.nomeCurso = nomeCurso;
         this.urlCurso = urlCurso;
@@ -28,6 +63,8 @@ public class Curso {
         this.cargaHorariaCurso = cargaHorariaCurso;
         this.dataInicioCurso = dataInicioCurso;
         this.categoriaCurso = categoriaCurso;
+        this.aluno = aluno;
+        this.instrutor = instrutor;
         this.dificuldadeCurso = dificuldadeCurso;
         this.statusCurso = statusCurso;
     }
@@ -40,35 +77,35 @@ public class Curso {
         this.idCurso = idCurso;
     }
 
-    public String getNomeCurso() {
+    public @NotNull @NotBlank String getNomeCurso() {
         return nomeCurso;
     }
 
-    public void setNomeCurso(String nomeCurso) {
+    public void setNomeCurso(@NotNull @NotBlank String nomeCurso) {
         this.nomeCurso = nomeCurso;
     }
 
-    public String getUrlCurso() {
+    public @NotNull @NotBlank String getUrlCurso() {
         return urlCurso;
     }
 
-    public void setUrlCurso(String urlCurso) {
+    public void setUrlCurso(@NotNull @NotBlank String urlCurso) {
         this.urlCurso = urlCurso;
     }
 
-    public String getDescricaoCurso() {
+    public @NotNull @NotBlank String getDescricaoCurso() {
         return descricaoCurso;
     }
 
-    public void setDescricaoCurso(String descricaoCurso) {
+    public void setDescricaoCurso(@NotNull @NotBlank String descricaoCurso) {
         this.descricaoCurso = descricaoCurso;
     }
 
-    public String getCargaHorariaCurso() {
+    public @NotNull @NotBlank String getCargaHorariaCurso() {
         return cargaHorariaCurso;
     }
 
-    public void setCargaHorariaCurso(String cargaHorariaCurso) {
+    public void setCargaHorariaCurso(@NotNull @NotBlank String cargaHorariaCurso) {
         this.cargaHorariaCurso = cargaHorariaCurso;
     }
 
@@ -80,12 +117,28 @@ public class Curso {
         this.dataInicioCurso = dataInicioCurso;
     }
 
-    public String getCategoriaCurso() {
+    public @NotNull @NotBlank String getCategoriaCurso() {
         return categoriaCurso;
     }
 
-    public void setCategoriaCurso(String categoriaCurso) {
+    public void setCategoriaCurso(@NotNull @NotBlank String categoriaCurso) {
         this.categoriaCurso = categoriaCurso;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Instrutor getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(Instrutor instrutor) {
+        this.instrutor = instrutor;
     }
 
     public Dificuldade getDificuldadeCurso() {
@@ -109,11 +162,18 @@ public class Curso {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Curso curso = (Curso) o;
-        return Objects.equals(idCurso, curso.idCurso) && Objects.equals(nomeCurso, curso.nomeCurso) && Objects.equals(urlCurso, curso.urlCurso) && Objects.equals(descricaoCurso, curso.descricaoCurso) && Objects.equals(cargaHorariaCurso, curso.cargaHorariaCurso) && Objects.equals(dataInicioCurso, curso.dataInicioCurso) && Objects.equals(categoriaCurso, curso.categoriaCurso) && dificuldadeCurso == curso.dificuldadeCurso && statusCurso == curso.statusCurso;
+        return Objects.equals(idCurso, curso.idCurso) && Objects.equals(nomeCurso, curso.nomeCurso) && Objects.equals(urlCurso, curso.urlCurso) && Objects.equals(descricaoCurso, curso.descricaoCurso) && Objects.equals(cargaHorariaCurso, curso.cargaHorariaCurso) && Objects.equals(dataInicioCurso, curso.dataInicioCurso) && Objects.equals(categoriaCurso, curso.categoriaCurso) && Objects.equals(aluno, curso.aluno) && Objects.equals(instrutor, curso.instrutor) && dificuldadeCurso == curso.dificuldadeCurso && statusCurso == curso.statusCurso;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCurso, nomeCurso, urlCurso, descricaoCurso, cargaHorariaCurso, dataInicioCurso, categoriaCurso, dificuldadeCurso, statusCurso);
+        return Objects.hash(idCurso, nomeCurso, urlCurso, descricaoCurso, cargaHorariaCurso, dataInicioCurso, categoriaCurso, aluno, instrutor, dificuldadeCurso, statusCurso);
     }
 }
+
+/*
+* ANOTAÇÕES:
+* Esta classe representa uma das entidades da aplicação,
+* a relação declarada como @ManyToOne é feita, pois
+* Um aluno pode fazer vários cursos e um instrutor
+* pode instruir vários cursos se assim ele desejar*/

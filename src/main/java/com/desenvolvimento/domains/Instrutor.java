@@ -1,13 +1,31 @@
 package com.desenvolvimento.domains;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.Objects;
 
-
+@Entity
+@Table(name = "instrutor")
 public class Instrutor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_instrutor")
     private Integer idInstrutor;
+
+    @NotNull @NotBlank
     private String nomeInstrutor;
+
+    @NotNull
+    @Digits(integer = 11, fraction = 0)
     private Integer cpfInstrutor;
+
+    @NotNull @NotBlank
     private String emailInstrutor;
+
+    @NotNull @NotBlank
     private String experienciaInstrutor;
 
     public Instrutor() {
@@ -21,44 +39,44 @@ public class Instrutor {
         this.idInstrutor = idInstrutor;
     }
 
-    public String getExperienciaInstrutor() {
-        return experienciaInstrutor;
-    }
-
-    public void setExperienciaInstrutor(String experienciaInstrutor) {
-        this.experienciaInstrutor = experienciaInstrutor;
-    }
-
-    public String getEmailInstrutor() {
-        return emailInstrutor;
-    }
-
-    public void setEmailInstrutor(String emailInstrutor) {
-        this.emailInstrutor = emailInstrutor;
-    }
-
-    public Integer getCpfInstrutor() {
-        return cpfInstrutor;
-    }
-
-    public void setCpfInstrutor(Integer cpfInstrutor) {
-        this.cpfInstrutor = cpfInstrutor;
-    }
-
-    public String getNomeInstrutor() {
-        return nomeInstrutor;
-    }
-
-    public void setNomeInstrutor(String nomeInstrutor) {
-        this.nomeInstrutor = nomeInstrutor;
-    }
-
     public Integer getIdInstrutor() {
         return idInstrutor;
     }
 
     public void setIdInstrutor(Integer idInstrutor) {
         this.idInstrutor = idInstrutor;
+    }
+
+    public @NotNull @NotBlank String getNomeInstrutor() {
+        return nomeInstrutor;
+    }
+
+    public void setNomeInstrutor(@NotNull @NotBlank String nomeInstrutor) {
+        this.nomeInstrutor = nomeInstrutor;
+    }
+
+    public @NotNull @Digits(integer = 11, fraction = 0) Integer getCpfInstrutor() {
+        return cpfInstrutor;
+    }
+
+    public void setCpfInstrutor(@NotNull @Digits(integer = 11, fraction = 0) Integer cpfInstrutor) {
+        this.cpfInstrutor = cpfInstrutor;
+    }
+
+    public @NotNull @NotBlank String getEmailInstrutor() {
+        return emailInstrutor;
+    }
+
+    public void setEmailInstrutor(@NotNull @NotBlank String emailInstrutor) {
+        this.emailInstrutor = emailInstrutor;
+    }
+
+    public @NotNull @NotBlank String getExperienciaInstrutor() {
+        return experienciaInstrutor;
+    }
+
+    public void setExperienciaInstrutor(@NotNull @NotBlank String experienciaInstrutor) {
+        this.experienciaInstrutor = experienciaInstrutor;
     }
 
     @Override
@@ -74,3 +92,7 @@ public class Instrutor {
         return Objects.hash(idInstrutor, nomeInstrutor, cpfInstrutor, emailInstrutor, experienciaInstrutor);
     }
 }
+
+/*
+ * ANOTAÇÕES:
+ * Esta classe representa uma das entidades da aplicação*/
