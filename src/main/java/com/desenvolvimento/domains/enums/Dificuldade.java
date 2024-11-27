@@ -2,7 +2,7 @@ package com.desenvolvimento.domains.enums;
 
 public enum Dificuldade {
 
-    Iniciante(1, "Iniciante"), Intermediario(2,"Intermediario"), Avançado(3, "Avançado");
+    Iniciante(1, "Iniciante"), Intermediario(2,"Intermediario"), Avancado(3, "Avancado");
 
     private Integer idDificuldade;
     private String situacaoDificuldade;

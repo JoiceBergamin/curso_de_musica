@@ -1,10 +1,11 @@
 package com.desenvolvimento.domains;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,14 +14,13 @@ public class Instrutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_instrutor")
-    private Integer idInstrutor;
+    private int idInstrutor;
 
     @NotNull @NotBlank
     private String nomeInstrutor;
 
-    @NotNull
-    @Digits(integer = 11, fraction = 0)
-    private Integer cpfInstrutor;
+    @NotNull @NotBlank
+    private String cpfInstrutor;
 
     @NotNull @NotBlank
     private String emailInstrutor;
@@ -31,19 +31,19 @@ public class Instrutor {
     public Instrutor() {
     }
 
-    public Instrutor(String experienciaInstrutor, String emailInstrutor, Integer cpfInstrutor, String nomeInstrutor, Integer idInstrutor) {
-        this.experienciaInstrutor = experienciaInstrutor;
-        this.emailInstrutor = emailInstrutor;
-        this.cpfInstrutor = cpfInstrutor;
-        this.nomeInstrutor = nomeInstrutor;
+    public Instrutor(int idInstrutor, String nomeInstrutor, String cpfInstrutor, String emailInstrutor, String experienciaInstrutor) {
         this.idInstrutor = idInstrutor;
+        this.nomeInstrutor = nomeInstrutor;
+        this.cpfInstrutor = cpfInstrutor;
+        this.emailInstrutor = emailInstrutor;
+        this.experienciaInstrutor = experienciaInstrutor;
     }
 
-    public Integer getIdInstrutor() {
+    public int getIdInstrutor() {
         return idInstrutor;
     }
 
-    public void setIdInstrutor(Integer idInstrutor) {
+    public void setIdInstrutor(int idInstrutor) {
         this.idInstrutor = idInstrutor;
     }
 
@@ -55,11 +55,11 @@ public class Instrutor {
         this.nomeInstrutor = nomeInstrutor;
     }
 
-    public @NotNull @Digits(integer = 11, fraction = 0) Integer getCpfInstrutor() {
+    public @NotNull @NotBlank String getCpfInstrutor() {
         return cpfInstrutor;
     }
 
-    public void setCpfInstrutor(@NotNull @Digits(integer = 11, fraction = 0) Integer cpfInstrutor) {
+    public void setCpfInstrutor(@NotNull @NotBlank String cpfInstrutor) {
         this.cpfInstrutor = cpfInstrutor;
     }
 
@@ -84,7 +84,7 @@ public class Instrutor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Instrutor instrutor = (Instrutor) o;
-        return Objects.equals(idInstrutor, instrutor.idInstrutor) && Objects.equals(nomeInstrutor, instrutor.nomeInstrutor) && Objects.equals(cpfInstrutor, instrutor.cpfInstrutor) && Objects.equals(emailInstrutor, instrutor.emailInstrutor) && Objects.equals(experienciaInstrutor, instrutor.experienciaInstrutor);
+        return idInstrutor == instrutor.idInstrutor && Objects.equals(nomeInstrutor, instrutor.nomeInstrutor) && Objects.equals(cpfInstrutor, instrutor.cpfInstrutor) && Objects.equals(emailInstrutor, instrutor.emailInstrutor) && Objects.equals(experienciaInstrutor, instrutor.experienciaInstrutor);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_curso")
-    private Long idCurso;
+    private long idCurso;
 
     @NotNull @NotBlank
     private String nomeCurso;
@@ -55,7 +55,7 @@ public class Curso {
     public Curso() {
     }
 
-    public Curso(Long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Aluno aluno, Instrutor instrutor, Dificuldade dificuldadeCurso, Status statusCurso) {
+    public Curso(long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Aluno aluno, Instrutor instrutor, Dificuldade dificuldadeCurso, Status statusCurso) {
         this.idCurso = idCurso;
         this.nomeCurso = nomeCurso;
         this.urlCurso = urlCurso;
@@ -69,11 +69,11 @@ public class Curso {
         this.statusCurso = statusCurso;
     }
 
-    public Long getIdCurso() {
+    public long getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(Long idCurso) {
+    public void setIdCurso(long idCurso) {
         this.idCurso = idCurso;
     }
 
@@ -162,7 +162,7 @@ public class Curso {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Curso curso = (Curso) o;
-        return Objects.equals(idCurso, curso.idCurso) && Objects.equals(nomeCurso, curso.nomeCurso) && Objects.equals(urlCurso, curso.urlCurso) && Objects.equals(descricaoCurso, curso.descricaoCurso) && Objects.equals(cargaHorariaCurso, curso.cargaHorariaCurso) && Objects.equals(dataInicioCurso, curso.dataInicioCurso) && Objects.equals(categoriaCurso, curso.categoriaCurso) && Objects.equals(aluno, curso.aluno) && Objects.equals(instrutor, curso.instrutor) && dificuldadeCurso == curso.dificuldadeCurso && statusCurso == curso.statusCurso;
+        return idCurso == curso.idCurso && Objects.equals(nomeCurso, curso.nomeCurso) && Objects.equals(urlCurso, curso.urlCurso) && Objects.equals(descricaoCurso, curso.descricaoCurso) && Objects.equals(cargaHorariaCurso, curso.cargaHorariaCurso) && Objects.equals(dataInicioCurso, curso.dataInicioCurso) && Objects.equals(categoriaCurso, curso.categoriaCurso) && Objects.equals(aluno, curso.aluno) && Objects.equals(instrutor, curso.instrutor) && dificuldadeCurso == curso.dificuldadeCurso && statusCurso == curso.statusCurso;
     }
 
     @Override

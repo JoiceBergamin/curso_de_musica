@@ -2,11 +2,13 @@ package com.desenvolvimento.domains;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,26 +18,27 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_aluno")
-    private Integer idAluno;
+    private int idAluno;
 
-    @NotNull @NotBlank
+    @NotNull
+    @NotBlank
     private String nomeAluno;
 
     @NotNull
-    @Digits(integer = 11, fraction = 0)
-    private Integer cpfAluno;
+    @NotBlank
+    private String cpfAluno;
 
-    @NotNull @NotBlank
+    @NotNull
+    @NotBlank
     private String emailAluno;
 
-    @NotNull @NotBlank
-    @Digits(integer = 7, fraction = 0)
-    private String raAluno;
+    @NotNull
+    private int raAluno;
 
     public Aluno() {
     }
 
-    public Aluno(Integer idAluno, String nomeAluno, Integer cpfAluno, String emailAluno, String raAluno) {
+    public Aluno(int idAluno, String nomeAluno, String cpfAluno, String emailAluno, int raAluno) {
         this.idAluno = idAluno;
         this.nomeAluno = nomeAluno;
         this.cpfAluno = cpfAluno;
@@ -43,11 +46,11 @@ public class Aluno {
         this.raAluno = raAluno;
     }
 
-    public Integer getIdAluno() {
+    public int getIdAluno() {
         return idAluno;
     }
 
-    public void setIdAluno(Integer idAluno) {
+    public void setIdAluno(int idAluno) {
         this.idAluno = idAluno;
     }
 
@@ -59,11 +62,11 @@ public class Aluno {
         this.nomeAluno = nomeAluno;
     }
 
-    public @NotNull @Digits(integer = 11, fraction = 0) Integer getCpfAluno() {
+    public @NotNull @NotBlank String getCpfAluno() {
         return cpfAluno;
     }
 
-    public void setCpfAluno(@NotNull @Digits(integer = 11, fraction = 0) Integer cpfAluno) {
+    public void setCpfAluno(@NotNull @NotBlank String cpfAluno) {
         this.cpfAluno = cpfAluno;
     }
 
@@ -75,11 +78,12 @@ public class Aluno {
         this.emailAluno = emailAluno;
     }
 
-    public @NotNull @NotBlank @Digits(integer = 7, fraction = 0) String getRaAluno() {
+    @NotNull
+    public int getRaAluno() {
         return raAluno;
     }
 
-    public void setRaAluno(@NotNull @NotBlank @Digits(integer = 7, fraction = 0) String raAluno) {
+    public void setRaAluno(@NotNull int raAluno) {
         this.raAluno = raAluno;
     }
 
@@ -88,7 +92,7 @@ public class Aluno {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return Objects.equals(idAluno, aluno.idAluno) && Objects.equals(nomeAluno, aluno.nomeAluno) && Objects.equals(cpfAluno, aluno.cpfAluno) && Objects.equals(emailAluno, aluno.emailAluno) && Objects.equals(raAluno, aluno.raAluno);
+        return idAluno == aluno.idAluno && raAluno == aluno.raAluno && Objects.equals(nomeAluno, aluno.nomeAluno) && Objects.equals(cpfAluno, aluno.cpfAluno) && Objects.equals(emailAluno, aluno.emailAluno);
     }
 
     @Override
@@ -96,5 +100,6 @@ public class Aluno {
         return Objects.hash(idAluno, nomeAluno, cpfAluno, emailAluno, raAluno);
     }
 }
+
 /* ANOTAÇÕES:
  * Esta classe representa uma das entidades da aplicação*/
