@@ -12,7 +12,7 @@ public enum Dificuldade {
         this.situacaoDificuldade = situacaoDificuldade;
     }
 
-    public Integer getIdDificuldade() {
+    public int getIdDificuldade() {
         return idDificuldade;
     }
 
