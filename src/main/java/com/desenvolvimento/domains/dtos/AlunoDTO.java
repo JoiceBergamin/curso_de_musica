@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class AlunoDTO {
 
-    private int idAluno;
+    private Integer idAluno;
 
     @NotNull(message = "O campo nome do aluno não pode ser nulo")
     @NotBlank(message = "O campo nome do aluno não pode ser vazio")
@@ -21,7 +21,7 @@ public class AlunoDTO {
     private String emailAluno;
 
     @NotNull(message = "O campo RA do aluno não pode ser nulo")
-    private int raAluno;
+    private Integer raAluno;
 
     public AlunoDTO() {
     }
@@ -35,11 +35,11 @@ public class AlunoDTO {
 
    }
 
-    public int getIdAluno() {
+    public Integer getIdAluno() {
         return idAluno;
     }
 
-    public void setIdAluno(int idAluno) {
+    public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
     }
 
@@ -67,12 +67,11 @@ public class AlunoDTO {
         this.emailAluno = emailAluno;
     }
 
-    @NotNull(message = "O campo RA do aluno não pode ser nulo")
-    public int getRaAluno() {
+    public @NotNull(message = "O campo RA do aluno não pode ser nulo") Integer getRaAluno() {
         return raAluno;
     }
 
-    public void setRaAluno(@NotNull(message = "O campo RA do aluno não pode ser nulo") int raAluno) {
+    public void setRaAluno(@NotNull(message = "O campo RA do aluno não pode ser nulo") Integer raAluno) {
         this.raAluno = raAluno;
     }
 }

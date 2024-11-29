@@ -15,7 +15,7 @@ public class Instrutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_instrutor")
-    private int idInstrutor;
+    private Integer idInstrutor;
 
     @NotNull @NotBlank
     private String nomeInstrutor;
@@ -36,19 +36,20 @@ public class Instrutor {
     public Instrutor() {
     }
 
-    public Instrutor(int idInstrutor, String nomeInstrutor, String cpfInstrutor, String emailInstrutor, String experienciaInstrutor) {
+    public Instrutor(Integer idInstrutor, String nomeInstrutor, String cpfInstrutor, String emailInstrutor, String experienciaInstrutor) {
         this.idInstrutor = idInstrutor;
         this.nomeInstrutor = nomeInstrutor;
         this.cpfInstrutor = cpfInstrutor;
         this.emailInstrutor = emailInstrutor;
         this.experienciaInstrutor = experienciaInstrutor;
+        this.cursos = cursos;
     }
 
-    public int getIdInstrutor() {
+    public Integer getIdInstrutor() {
         return idInstrutor;
     }
 
-    public void setIdInstrutor(int idInstrutor) {
+    public void setIdInstrutor(Integer idInstrutor) {
         this.idInstrutor = idInstrutor;
     }
 

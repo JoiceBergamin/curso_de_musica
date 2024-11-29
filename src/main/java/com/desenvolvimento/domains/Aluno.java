@@ -1,7 +1,6 @@
 package com.desenvolvimento.domains;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -18,7 +17,7 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_aluno")
-    private int idAluno;
+    private Integer idAluno;
 
     @NotNull
     @NotBlank
@@ -33,7 +32,7 @@ public class Aluno {
     private String emailAluno;
 
     @NotNull
-    private int raAluno;
+    private Integer raAluno;
 
     @JsonIgnore
     @OneToMany(mappedBy = "aluno")
@@ -42,7 +41,7 @@ public class Aluno {
     public Aluno() {
     }
 
-    public Aluno(int idAluno, String nomeAluno, String cpfAluno, String emailAluno, int raAluno) {
+    public Aluno(Integer idAluno, String nomeAluno, String cpfAluno, String emailAluno, Integer raAluno) {
         this.idAluno = idAluno;
         this.nomeAluno = nomeAluno;
         this.cpfAluno = cpfAluno;
@@ -50,11 +49,11 @@ public class Aluno {
         this.raAluno = raAluno;
     }
 
-    public int getIdAluno() {
+    public Integer getIdAluno() {
         return idAluno;
     }
 
-    public void setIdAluno(int idAluno) {
+    public void setIdAluno(Integer idAluno) {
         this.idAluno = idAluno;
     }
 
@@ -82,12 +81,11 @@ public class Aluno {
         this.emailAluno = emailAluno;
     }
 
-    @NotNull
-    public int getRaAluno() {
+    public @NotNull Integer getRaAluno() {
         return raAluno;
     }
 
-    public void setRaAluno(@NotNull int raAluno) {
+    public void setRaAluno(@NotNull Integer raAluno) {
         this.raAluno = raAluno;
     }
 
@@ -104,12 +102,12 @@ public class Aluno {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return idAluno == aluno.idAluno && raAluno == aluno.raAluno && Objects.equals(nomeAluno, aluno.nomeAluno) && Objects.equals(cpfAluno, aluno.cpfAluno) && Objects.equals(emailAluno, aluno.emailAluno);
+        return Objects.equals(idAluno, aluno.idAluno) && Objects.equals(nomeAluno, aluno.nomeAluno) && Objects.equals(cpfAluno, aluno.cpfAluno) && Objects.equals(emailAluno, aluno.emailAluno) && Objects.equals(raAluno, aluno.raAluno) && Objects.equals(cursos, aluno.cursos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAluno, nomeAluno, cpfAluno, emailAluno, raAluno);
+        return Objects.hash(idAluno, nomeAluno, cpfAluno, emailAluno, raAluno, cursos);
     }
 }
 

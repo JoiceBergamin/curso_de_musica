@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class InstrutorDTO {
 
-    private int idInstrutor;
+    private Integer idInstrutor;
 
     @NotNull(message = "O campo nome do instrutor não pode ser nulo")
     @NotBlank (message = "O campo nome do instrutor não pode ser vazio")
@@ -36,11 +36,11 @@ public class InstrutorDTO {
 
     }
 
-    public int getIdInstrutor() {
+    public Integer getIdInstrutor() {
         return idInstrutor;
     }
 
-    public void setIdInstrutor(int idInstrutor) {
+    public void setIdInstrutor(Integer idInstrutor) {
         this.idInstrutor = idInstrutor;
     }
 

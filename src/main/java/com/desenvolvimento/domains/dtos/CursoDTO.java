@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class CursoDTO {
 
-    private long idCurso;
+    private Long idCurso;
 
     @NotNull(message = "O campo nome do curso não pode ser nulo")
     @NotBlank(message = "O campo nome do curso não pode ser vazio")
@@ -68,11 +68,11 @@ public class CursoDTO {
 
     }
 
-    public long getIdCurso() {
+    public Long getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(long idCurso) {
+    public void setIdCurso(Long idCurso) {
         this.idCurso = idCurso;
     }
 

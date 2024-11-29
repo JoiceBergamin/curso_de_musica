@@ -16,7 +16,7 @@ public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_curso")
-    private long idCurso;
+    private Long idCurso;
 
     @NotNull @NotBlank
     private String nomeCurso;
@@ -55,7 +55,7 @@ public class Curso {
     public Curso() {
     }
 
-    public Curso(long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Aluno aluno, Instrutor instrutor, Dificuldade dificuldadeCurso, Status statusCurso) {
+    public Curso(Long idCurso, String nomeCurso, String urlCurso, String descricaoCurso, String cargaHorariaCurso, LocalDate dataInicioCurso, String categoriaCurso, Aluno aluno, Instrutor instrutor, Dificuldade dificuldadeCurso, Status statusCurso) {
         this.idCurso = idCurso;
         this.nomeCurso = nomeCurso;
         this.urlCurso = urlCurso;
@@ -69,11 +69,11 @@ public class Curso {
         this.statusCurso = statusCurso;
     }
 
-    public long getIdCurso() {
+    public Long getIdCurso() {
         return idCurso;
     }
 
-    public void setIdCurso(long idCurso) {
+    public void setIdCurso(Long idCurso) {
         this.idCurso = idCurso;
     }
 
