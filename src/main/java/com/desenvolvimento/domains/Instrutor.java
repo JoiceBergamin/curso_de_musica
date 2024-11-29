@@ -1,5 +1,6 @@
 package com.desenvolvimento.domains;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,6 +28,10 @@ public class Instrutor {
 
     @NotNull @NotBlank
     private String experienciaInstrutor;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "instrutor")
+    private List<Curso> cursos = new ArrayList<>();
 
     public Instrutor() {
     }
@@ -77,6 +82,14 @@ public class Instrutor {
 
     public void setExperienciaInstrutor(@NotNull @NotBlank String experienciaInstrutor) {
         this.experienciaInstrutor = experienciaInstrutor;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
     @Override

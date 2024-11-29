@@ -35,6 +35,10 @@ public class Aluno {
     @NotNull
     private int raAluno;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "aluno")
+    private List<Curso> cursos = new ArrayList<>();
+
     public Aluno() {
     }
 
@@ -85,6 +89,14 @@ public class Aluno {
 
     public void setRaAluno(@NotNull int raAluno) {
         this.raAluno = raAluno;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
     @Override
