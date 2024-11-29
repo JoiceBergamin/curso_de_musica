@@ -30,4 +30,11 @@ public class InstrutorResource {
     public ResponseEntity<InstrutorDTO> findById(@PathVariable int id){
         Instrutor obj = this.instrutorService.findById(id);
         return ResponseEntity.ok().body(new InstrutorDTO(obj));
-}}
+}
+    @GetMapping(value = "/cpfInstrutor/{cpfInstrutor}")
+    public ResponseEntity<InstrutorDTO> findById(@PathVariable String cpfInstrutor){
+        Instrutor obj = this.instrutorService.findByCpfInstrutor(cpfInstrutor);
+        return ResponseEntity.ok().body(new InstrutorDTO(obj));
+    }
+
+}

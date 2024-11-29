@@ -29,4 +29,10 @@ public class CursoResource {
     public ResponseEntity<CursoDTO> findById(@PathVariable Long id){
         Curso obj = this.cursoService.findById(id);
         return ResponseEntity.ok().body(new CursoDTO(obj));
-}}
+}
+    @GetMapping(value = "/nomecurso/{nomeCurso}")
+    public ResponseEntity<CursoDTO> findById(@PathVariable String nomeCurso){
+        Curso obj = this.cursoService.findByNomeCurso(nomeCurso);
+        return ResponseEntity.ok().body(new CursoDTO(obj));
+    }
+}

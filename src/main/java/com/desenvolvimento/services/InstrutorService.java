@@ -1,5 +1,6 @@
 package com.desenvolvimento.services;
 
+import com.desenvolvimento.domains.Aluno;
 import com.desenvolvimento.domains.Instrutor;
 import com.desenvolvimento.domains.dtos.InstrutorDTO;
 import com.desenvolvimento.repositories.InstrutorRepository;
@@ -24,5 +25,9 @@ public class InstrutorService {
         Optional<Instrutor> obj = instrutorRepository.findById(id);
         return obj.orElse(null);
 
+    }
+    public Instrutor findByCpfInstrutor(String cpfInstrutor){
+        Optional <Instrutor> obj = instrutorRepository.findByCpfInstrutor(cpfInstrutor);
+        return obj.orElse(null);
     }
 }

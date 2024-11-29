@@ -29,4 +29,9 @@ public class AlunoResource {
         Aluno obj = this.alunoService.findById(id);
         return ResponseEntity.ok().body(new AlunoDTO(obj));
     }
+    @GetMapping(value = "/cpfAluno/{cpfAluno}")
+    public ResponseEntity<AlunoDTO> findById(@PathVariable String cpfAluno){
+        Aluno obj = this.alunoService.findByCpfAluno(cpfAluno);
+        return ResponseEntity.ok().body(new AlunoDTO(obj));
+    }
 }

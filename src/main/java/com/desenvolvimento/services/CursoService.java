@@ -1,5 +1,6 @@
 package com.desenvolvimento.services;
 
+import com.desenvolvimento.domains.Aluno;
 import com.desenvolvimento.domains.Curso;
 import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.repositories.CursoRepository;
@@ -22,6 +23,10 @@ public class CursoService {
     }
     public Curso findById(Long id){
         Optional<Curso> obj = cursoRepository.findById(id);
+        return obj.orElse(null);
+    }
+    public Curso findByNomeCurso(String nomeCurso){
+        Optional <Curso> obj = cursoRepository.findByNomeCurso(nomeCurso);
         return obj.orElse(null);
     }
 }

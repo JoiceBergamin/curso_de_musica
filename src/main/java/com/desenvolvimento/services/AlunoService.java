@@ -28,4 +28,8 @@ public class AlunoService {
         return obj.orElse(null);
     }
 
+    public Aluno findByCpfAluno(String cpfAluno){
+        Optional <Aluno> obj = alunoRepository.findByCpfAluno(cpfAluno);
+        return obj.orElse(null);
+    }
 }
