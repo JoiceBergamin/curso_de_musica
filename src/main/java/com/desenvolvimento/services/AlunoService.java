@@ -5,6 +5,7 @@ import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.repositories.AlunoRepository;
 import com.desenvolvimento.repositories.CursoRepository;
+import com.desenvolvimento.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,11 @@ public class AlunoService {
     }
     public Aluno findById(int id){
         Optional<Aluno> obj = alunoRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Aluno não encontrado! Id: " + id));
     }
 
     public Aluno findByCpfAluno(String cpfAluno){
         Optional <Aluno> obj = alunoRepository.findByCpfAluno(cpfAluno);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(" Aluno não encontrado! CPF: " + cpfAluno));
     }
 }

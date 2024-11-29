@@ -4,6 +4,7 @@ import com.desenvolvimento.domains.Aluno;
 import com.desenvolvimento.domains.Curso;
 import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.repositories.CursoRepository;
+import com.desenvolvimento.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,10 @@ public class CursoService {
     }
     public Curso findById(Long id){
         Optional<Curso> obj = cursoRepository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Curso não encontrado! Id: " + id));
     }
     public Curso findByNomeCurso(String nomeCurso){
         Optional <Curso> obj = cursoRepository.findByNomeCurso(nomeCurso);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Curso não encontrado! Nome do Curso: " + nomeCurso));
     }
 }
