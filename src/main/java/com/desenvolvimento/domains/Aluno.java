@@ -1,6 +1,7 @@
 package com.desenvolvimento.domains;
 
 
+import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -25,6 +26,7 @@ public class Aluno {
 
     @NotNull
     @NotBlank
+    @Column(unique = true)
     private String cpfAluno;
 
     @NotNull
@@ -47,6 +49,13 @@ public class Aluno {
         this.cpfAluno = cpfAluno;
         this.emailAluno = emailAluno;
         this.raAluno = raAluno;
+    }
+    public Aluno(AlunoDTO dto){
+        this.idAluno = dto.getIdAluno();
+        this.nomeAluno = dto.getNomeAluno();
+        this.cpfAluno = dto.getCpfAluno();
+        this.emailAluno = dto.getEmailAluno();
+        this.raAluno = dto.getRaAluno();
     }
 
     public Integer getIdAluno() {

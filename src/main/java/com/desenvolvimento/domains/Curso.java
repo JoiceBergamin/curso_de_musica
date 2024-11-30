@@ -1,5 +1,6 @@
 package com.desenvolvimento.domains;
 
+import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.domains.enums.Dificuldade;
 import com.desenvolvimento.domains.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -67,6 +68,22 @@ public class Curso {
         this.instrutor = instrutor;
         this.dificuldadeCurso = dificuldadeCurso;
         this.statusCurso = statusCurso;
+    }
+
+    public Curso(CursoDTO dto){
+        this.idCurso = dto.getIdCurso();
+        this.nomeCurso = dto.getNomeCurso();
+        this.urlCurso = dto.getUrlCurso();
+        this.descricaoCurso = dto.getDescricaoCurso();
+        this.cargaHorariaCurso = dto.getCargaHorariaCurso();
+        this.dataInicioCurso = dto.getDataInicioCurso();
+        this.categoriaCurso = dto.getCategoriaCurso();
+        this.aluno = new Aluno();
+        this.aluno.setIdAluno(dto.getAluno());
+        this.instrutor = new Instrutor();
+        this.instrutor.setIdInstrutor(dto.getInstrutor());
+        this.dificuldadeCurso = Dificuldade.toEnum(dto.getDificuldadeCurso());
+        this.statusCurso = Status.toEnum(dto.getStatusCurso());
     }
 
     public Long getIdCurso() {

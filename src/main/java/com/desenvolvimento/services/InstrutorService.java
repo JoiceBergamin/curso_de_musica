@@ -2,8 +2,10 @@ package com.desenvolvimento.services;
 
 import com.desenvolvimento.domains.Aluno;
 import com.desenvolvimento.domains.Instrutor;
+import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.domains.dtos.InstrutorDTO;
 import com.desenvolvimento.repositories.InstrutorRepository;
+import com.desenvolvimento.services.exceptions.DataIntegrityViolationException;
 import com.desenvolvimento.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,18 @@ public class InstrutorService {
     public Instrutor findByCpfInstrutor(String cpfInstrutor){
         Optional <Instrutor> obj = instrutorRepository.findByCpfInstrutor(cpfInstrutor);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Instrutor não encontrado! CPF: " + cpfInstrutor));
+    }
+    public Instrutor create(InstrutorDTO dto) {
+        dto.setIdInstrutor(null);
+        validaInstrutor(dto);
+        Instrutor obj = new Instrutor(dto);
+        return instrutorRepository.save(obj);
+    }
+    private void validaInstrutor(InstrutorDTO dto){
+        Optional<Instrutor> obj = instrutorRepository.findByCpfInstrutor(dto.getCpfInstrutor());{
+            if(obj.isPresent() && obj.get().getCpfInstrutor() != dto.getCpfInstrutor()){
+                throw new DataIntegrityViolationException("CPF de instrutor já cadastrado!");
+            }
+        }
     }
 }

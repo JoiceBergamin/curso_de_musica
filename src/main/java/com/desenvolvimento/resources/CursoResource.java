@@ -7,11 +7,10 @@ import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.services.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,5 +33,11 @@ public class CursoResource {
     public ResponseEntity<CursoDTO> findById(@PathVariable String nomeCurso){
         Curso obj = this.cursoService.findByNomeCurso(nomeCurso);
         return ResponseEntity.ok().body(new CursoDTO(obj));
+    }
+    @PostMapping
+    public ResponseEntity<CursoDTO> create(@RequestBody CursoDTO dto){
+        Curso curso = cursoService.create(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(curso.getIdCurso()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

@@ -30,4 +30,10 @@ public class CursoService {
         Optional <Curso> obj = cursoRepository.findByNomeCurso(nomeCurso);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Curso não encontrado! Nome do Curso: " + nomeCurso));
     }
+    public Curso create(CursoDTO dto){
+        dto.setIdCurso(null);
+        Curso obj = new Curso(dto);
+        return cursoRepository.save(obj);
+    }
+
 }

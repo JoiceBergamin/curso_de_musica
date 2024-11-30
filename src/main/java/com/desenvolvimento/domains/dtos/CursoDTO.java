@@ -37,11 +37,11 @@ public class CursoDTO {
     private String categoriaCurso;
 
     @NotNull(message = "O campo Aluno não pode ser nulo")
-    private int idaluno;
+    private int aluno;
     private String nomeAluno;
 
     @NotNull(message = "O campo Instrutor não pode ser nulo")
-    private int idinstrutor;
+    private int instrutor;
     private String nomeInstrutor;
 
     private int dificuldadeCurso;
@@ -51,7 +51,7 @@ public class CursoDTO {
     public CursoDTO() {
     }
 
-    public CursoDTO(Curso curso){
+    public CursoDTO(Curso curso) {
         this.idCurso = curso.getIdCurso();
         this.nomeCurso = curso.getNomeCurso();
         this.urlCurso = curso.getUrlCurso();
@@ -59,9 +59,9 @@ public class CursoDTO {
         this.cargaHorariaCurso = curso.getCargaHorariaCurso();
         this.dataInicioCurso = curso.getDataInicioCurso();
         this.categoriaCurso = curso.getCategoriaCurso();
-        this.idaluno = curso.getAluno().getIdAluno();
+        this.aluno = curso.getAluno().getIdAluno();
         this.nomeAluno = curso.getAluno().getNomeAluno();
-        this.idinstrutor = curso.getInstrutor().getIdInstrutor();
+        this.instrutor = curso.getInstrutor().getIdInstrutor();
         this.nomeInstrutor = curso.getInstrutor().getNomeInstrutor();
         this.dificuldadeCurso = curso.getDificuldadeCurso().getIdDificuldade();
         this.statusCurso = curso.getStatusCurso().getIdStatus();
@@ -125,12 +125,12 @@ public class CursoDTO {
     }
 
     @NotNull(message = "O campo Aluno não pode ser nulo")
-    public int getIdaluno() {
-        return idaluno;
+    public int getAluno() {
+        return aluno;
     }
 
-    public void setIdaluno(@NotNull(message = "O campo Aluno não pode ser nulo") int idaluno) {
-        this.idaluno = idaluno;
+    public void setAluno(@NotNull(message = "O campo Aluno não pode ser nulo") int aluno) {
+        this.aluno = aluno;
     }
 
     public String getNomeAluno() {
@@ -142,12 +142,12 @@ public class CursoDTO {
     }
 
     @NotNull(message = "O campo Instrutor não pode ser nulo")
-    public int getIdinstrutor() {
-        return idinstrutor;
+    public int getInstrutor() {
+        return instrutor;
     }
 
-    public void setIdinstrutor(@NotNull(message = "O campo Instrutor não pode ser nulo") int idinstrutor) {
-        this.idinstrutor = idinstrutor;
+    public void setInstrutor(@NotNull(message = "O campo Instrutor não pode ser nulo") int instrutor) {
+        this.instrutor = instrutor;
     }
 
     public String getNomeInstrutor() {

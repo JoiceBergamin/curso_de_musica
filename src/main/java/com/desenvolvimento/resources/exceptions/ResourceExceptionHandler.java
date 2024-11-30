@@ -1,5 +1,6 @@
 package com.desenvolvimento.resources.exceptions;
 
+import com.desenvolvimento.services.exceptions.DataIntegrityViolationException;
 import com.desenvolvimento.services.exceptions.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.coyote.Response;
@@ -25,7 +26,12 @@ public class ResourceExceptionHandler {
                 "Bad Request", ex.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
-
+@ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException ex, HttpServletRequest request){
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Data Integrity Violation",
+                ex.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+}
 
 
 }

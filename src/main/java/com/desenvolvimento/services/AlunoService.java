@@ -5,6 +5,7 @@ import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.repositories.AlunoRepository;
 import com.desenvolvimento.repositories.CursoRepository;
+import com.desenvolvimento.services.exceptions.DataIntegrityViolationException;
 import com.desenvolvimento.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class AlunoService {
+
 
     @Autowired
     private AlunoRepository alunoRepository;
@@ -32,5 +34,20 @@ public class AlunoService {
     public Aluno findByCpfAluno(String cpfAluno){
         Optional <Aluno> obj = alunoRepository.findByCpfAluno(cpfAluno);
         return obj.orElseThrow(() -> new ObjectNotFoundException(" Aluno não encontrado! CPF: " + cpfAluno));
+    }
+
+    public Aluno create(AlunoDTO dto){
+        dto.setIdAluno(null);
+        validaAluno(dto);
+        Aluno obj = new Aluno(dto);
+        return alunoRepository.save(obj);
+    }
+
+    private void validaAluno(AlunoDTO dto){
+        Optional<Aluno> obj = alunoRepository.findByCpfAluno(dto.getCpfAluno());{
+            if(obj.isPresent() && obj.get().getCpfAluno() != dto.getCpfAluno()){
+                throw new DataIntegrityViolationException("CPF de aluno já cadastrado!");
+            }
+        }
     }
 }

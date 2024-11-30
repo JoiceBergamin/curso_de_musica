@@ -1,5 +1,6 @@
 package com.desenvolvimento.domains;
 
+import com.desenvolvimento.domains.dtos.InstrutorDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -21,6 +22,7 @@ public class Instrutor {
     private String nomeInstrutor;
 
     @NotNull @NotBlank
+    @Column(unique = true)
     private String cpfInstrutor;
 
     @NotNull @NotBlank
@@ -43,6 +45,14 @@ public class Instrutor {
         this.emailInstrutor = emailInstrutor;
         this.experienciaInstrutor = experienciaInstrutor;
         this.cursos = cursos;
+    }
+
+    public Instrutor(InstrutorDTO dto){
+        this.idInstrutor = dto.getIdInstrutor();
+        this.nomeInstrutor = dto.getNomeInstrutor();
+        this.cpfInstrutor = dto.getCpfInstrutor();
+        this.emailInstrutor = dto.getEmailInstrutor();
+        this.experienciaInstrutor = dto.getExperienciaInstrutor();
     }
 
     public Integer getIdInstrutor() {
