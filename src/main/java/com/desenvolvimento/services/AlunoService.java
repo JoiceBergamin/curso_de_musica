@@ -50,4 +50,18 @@ public class AlunoService {
             }
         }
     }
+    public Aluno update(Integer id, AlunoDTO objDto){
+        objDto.setIdAluno(id);
+        Aluno oldObj = findById(id);
+        oldObj = new Aluno(objDto);
+        return alunoRepository.save(oldObj);
+    }
+
+    public void delete(Integer id){
+        Aluno obj = findById(id);
+        if (obj.getCursos().size()>0){
+            throw new DataIntegrityViolationException("Aluno não pode ser deletado pois possui cursos cadastrados!");
+        }
+        alunoRepository.deleteById(id);
+    }
 }

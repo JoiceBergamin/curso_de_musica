@@ -41,4 +41,14 @@ public class CursoResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(curso.getIdCurso()).toUri();
         return ResponseEntity.created(uri).build();
     }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CursoDTO> update(@PathVariable Long id, @Valid @RequestBody CursoDTO objDto){
+        Curso Obj = cursoService.update(id, objDto);
+        return ResponseEntity.ok().body(new CursoDTO(Obj));
+    }
+    @DeleteMapping (value = "/{id}")
+    public ResponseEntity<CursoDTO> delete(@PathVariable Long id){
+        cursoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

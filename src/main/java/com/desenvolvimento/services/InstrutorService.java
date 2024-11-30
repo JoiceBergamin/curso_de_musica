@@ -46,4 +46,17 @@ public class InstrutorService {
             }
         }
     }
+    public Instrutor update(Integer id, InstrutorDTO objDto){
+        objDto.setIdInstrutor(id);
+        Instrutor oldObj = findById(id);
+        oldObj = new Instrutor(objDto);
+        return instrutorRepository.save(oldObj);
+    }
+    public void delete(Integer id){
+        Instrutor obj = findById(id);
+        if (obj.getCursos().size()>0){
+            throw new DataIntegrityViolationException("Instrutor não pode ser deletado pois possui cursos cadastrados!");
+        }
+        instrutorRepository.deleteById(id);
+    }
 }

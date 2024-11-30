@@ -57,4 +57,17 @@ public class CursoService {
             throw new DataIntegrityViolationException("Instrutor - " + dto.getInstrutor() + " não está cadastrado!");
         }
     }
+
+    public Curso update(Long id, CursoDTO objDto){
+        objDto.setIdCurso(id);
+        Curso oldObj = findById(id);
+        validaCurso(objDto);
+        oldObj = new Curso(objDto);
+        return cursoRepository.save(oldObj);
+    }
+    public void delete(Long id){
+        Curso obj = findById(id);
+        cursoRepository.deleteById(id);
+    }
+
 }
