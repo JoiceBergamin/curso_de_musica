@@ -4,6 +4,7 @@ import com.desenvolvimento.domains.Aluno;
 import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.services.AlunoService;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class AlunoResource {
         return ResponseEntity.ok().body(new AlunoDTO(obj));
     }
     @PostMapping
-    public ResponseEntity<AlunoDTO> create(@RequestBody AlunoDTO dto){
+    public ResponseEntity<AlunoDTO> create(@Valid @RequestBody AlunoDTO dto){
         Aluno aluno = alunoService.create(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(aluno.getIdAluno()).toUri();

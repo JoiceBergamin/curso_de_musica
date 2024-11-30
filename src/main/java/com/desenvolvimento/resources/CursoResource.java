@@ -5,6 +5,7 @@ import com.desenvolvimento.domains.Curso;
 import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.domains.dtos.CursoDTO;
 import com.desenvolvimento.services.CursoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class CursoResource {
         return ResponseEntity.ok().body(new CursoDTO(obj));
     }
     @PostMapping
-    public ResponseEntity<CursoDTO> create(@RequestBody CursoDTO dto){
+    public ResponseEntity<CursoDTO> create(@Valid @RequestBody CursoDTO dto){
         Curso curso = cursoService.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(curso.getIdCurso()).toUri();
         return ResponseEntity.created(uri).build();

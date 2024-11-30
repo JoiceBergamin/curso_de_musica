@@ -5,6 +5,7 @@ import com.desenvolvimento.domains.Instrutor;
 import com.desenvolvimento.domains.dtos.AlunoDTO;
 import com.desenvolvimento.domains.dtos.InstrutorDTO;
 import com.desenvolvimento.services.InstrutorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class InstrutorResource {
         return ResponseEntity.ok().body(new InstrutorDTO(obj));
     }
     @PostMapping
-    public ResponseEntity<InstrutorDTO> create(@RequestBody InstrutorDTO dto) {
+    public ResponseEntity<InstrutorDTO> create(@Valid @RequestBody InstrutorDTO dto) {
         Instrutor instrutor = instrutorService.create(dto);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(instrutor.getIdInstrutor()).toUri();
