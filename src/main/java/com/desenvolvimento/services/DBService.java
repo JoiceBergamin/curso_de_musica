@@ -1,13 +1,11 @@
 package com.desenvolvimento.services;
 
-import com.desenvolvimento.domains.Aluno;
-import com.desenvolvimento.domains.Curso;
-import com.desenvolvimento.domains.Instrutor;
+import com.desenvolvimento.domains.*;
 import com.desenvolvimento.domains.enums.Dificuldade;
+import com.desenvolvimento.domains.enums.OrdemDePrioridade;
 import com.desenvolvimento.domains.enums.Status;
-import com.desenvolvimento.repositories.AlunoRepository;
-import com.desenvolvimento.repositories.CursoRepository;
-import com.desenvolvimento.repositories.InstrutorRepository;
+import com.desenvolvimento.domains.enums.StatusDeMatricula;
+import com.desenvolvimento.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,15 @@ public class DBService {
 
     @Autowired
     private CursoRepository cursoRepository;
+
+    @Autowired
+    private TecnicoRepository tecnicoRepo;
+
+    @Autowired
+    private UsuarioRepository usuarioRepo;
+
+    @Autowired
+    private OrdemDeMatriculaRepository ordemDeMatriculaRepo;
 
     public void initDB(){
         Aluno aluno01 = new Aluno(null, "Maria Cecília", "123.654.789-79", "mariaceciliamusica@gmail.com", 1695436);
@@ -69,7 +76,17 @@ public class DBService {
 
         cursoRepository.save(curso03);
 
+        Tecnico tec01 = new Tecnico(null, "Joice", "Bergamin", "12345678910", "joice.bergamin@gmail.com", "123");
 
+        Usuario usuario01 = new Usuario(null, "Maria", "da Silva", "789456123010", "maria.silva@gmail.com", "123");
+        Usuario usuario02 = new Usuario(null, "Fernanda", "dos Santos", "789456123011", "fer.santos@gmail.com", "123");
+
+        OrdemDeMatricula ordem01 = new OrdemDeMatricula(null, "ordem01", "teste de matricula", OrdemDePrioridade.ALTA, StatusDeMatricula.ABERTA, tec01, usuario01);
+
+        tecnicoRepo.save(tec01);
+        usuarioRepo.save(usuario01);
+        usuarioRepo.save(usuario02);
+        ordemDeMatriculaRepo.save(ordem01);
 
     }
 }
