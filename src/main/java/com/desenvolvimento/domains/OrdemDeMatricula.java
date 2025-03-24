@@ -2,21 +2,37 @@ package com.desenvolvimento.domains;
 
 import com.desenvolvimento.domains.enums.OrdemDePrioridade;
 import com.desenvolvimento.domains.enums.StatusDeMatricula;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "ordemdematricula")
 public class OrdemDeMatricula {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataDeInicio =LocalDate.now();
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFinal;
+
     private String tituloDaOrdem;
     private String descricao;
     private OrdemDePrioridade ordemDePrioridade;
     private StatusDeMatricula statusDeMatricula;
+
+    @ManyToOne
+    @JoinColumn(name = "idtecnico")
     private Tecnico tecnico;
+
+    @ManyToOne
+    @JoinColumn(name = "idusuario")
     private Usuario usuario;
 
     public OrdemDeMatricula() {
