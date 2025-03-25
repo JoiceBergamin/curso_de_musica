@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+//@Table(name = "usuarios")
 public class Usuario extends Pessoa{
 
     @JsonIgnore
