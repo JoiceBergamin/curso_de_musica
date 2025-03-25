@@ -1,5 +1,7 @@
 package com.desenvolvimento.domains;
 
+import com.desenvolvimento.domains.dtos.TecnicoDTO;
+import com.desenvolvimento.domains.dtos.UsuarioDTO;
 import com.desenvolvimento.domains.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 //@Table(name = "usuarios")
@@ -23,6 +26,20 @@ public class Usuario extends Pessoa{
         addTipoPessoa(TipoPessoa.USUARIO);
 
     }
+
+    public Usuario(UsuarioDTO obj){
+        this.id = obj.getId();
+        this.nome = obj.getNome();
+        this.sobrenome = obj.getSobrenome();
+        this.cpf = obj.getCpf();
+        this.email = obj.getEmail();
+        this.senha = obj.getSenha();
+        this.criadoEm = obj.getCriadoEm();
+        this.tipoPessoa = obj.getTipoPessoa().stream().map(x -> x.getId()).collect(Collectors.toSet());
+        addTipoPessoa(TipoPessoa.USUARIO);
+        addTipoPessoa(TipoPessoa.TECNICO);
+    }
+
 
     public Usuario() {
         super();
