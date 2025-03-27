@@ -24,6 +24,9 @@ public class DBService {
     private CursoRepository cursoRepository;
 
     @Autowired
+    private VeiculoRepository veiculoRepository;
+
+    @Autowired
     private TecnicoRepository tecnicoRepo;
 
     @Autowired
@@ -31,6 +34,8 @@ public class DBService {
 
     @Autowired
     private OrdemDeMatriculaRepository ordemDeMatriculaRepo;
+
+
 
     public void initDB(){
         Aluno aluno01 = new Aluno(null, "Maria Cecília", "123.654.789-79", "mariaceciliamusica@gmail.com", 1695436);
@@ -76,6 +81,14 @@ public class DBService {
 
         cursoRepository.save(curso03);
 
+        Veiculo veiculo1 = new Veiculo(null, "Astra", LocalDate.now(),35000.00,"Richard", "785.568.174-89");
+        Veiculo veiculo2 = new Veiculo(null, "Gol", LocalDate.now(),45000.00,"Joice", "564.457.789-89");
+        Veiculo veiculo3 = new Veiculo(null, "EcoSport", LocalDate.now(),55000.00,"Marcela", "757.582.742-89");
+
+        veiculoRepository.save(veiculo1);
+        veiculoRepository.save(veiculo2);
+        veiculoRepository.save(veiculo3);
+
         Tecnico tec01 = new Tecnico(null, "Joice", "Bergamin", "12345678910", "joice.bergamin@gmail.com", "123");
 
         Usuario usuario01 = new Usuario(null, "Maria", "da Silva", "789456123010", "maria.silva@gmail.com", "123");
@@ -88,5 +101,7 @@ public class DBService {
         usuarioRepo.save(usuario02);
         ordemDeMatriculaRepo.save(ordem01);
 
-    }
-}
+
+    }}
+
+
