@@ -5,6 +5,7 @@ import com.desenvolvimento.domains.Veiculo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -27,7 +28,7 @@ public class VeiculoDTO {
     private String nomeProprietario;
 
     @NotNull(message = "O campo cpf do proprietário não pode ser nulo")
-    @NotBlank(message = "O campo cpf do proprietário não pode ser branco")
+    @CPF
     private String cpfProprietario;
 
     public VeiculoDTO() {
