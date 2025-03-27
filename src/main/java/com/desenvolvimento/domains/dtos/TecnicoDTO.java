@@ -46,6 +46,9 @@ public class TecnicoDTO {
 
     protected Set<Integer> tipoPessoa = new HashSet<>();
 
+    public TecnicoDTO() {
+    }
+
     public TecnicoDTO(Tecnico obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -54,7 +57,7 @@ public class TecnicoDTO {
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.criadoEm = obj.getCriadoEm();
-        this.tipoPessoa.stream().map(TipoPessoa::toEnum).collect(Collectors.toSet());
+        this.tipoPessoa = obj.getTipoPessoa().stream().map(TipoPessoa::getId).collect(Collectors.toSet());
     }
 
     public Long getId() {

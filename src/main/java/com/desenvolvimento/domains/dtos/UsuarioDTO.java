@@ -42,6 +42,9 @@ public class UsuarioDTO {
 
     protected Set<Integer> tipoPessoa = new HashSet<>();
 
+    public UsuarioDTO() {
+    }
+
     public UsuarioDTO(Usuario obj) {
         this.id = obj.getId();
         this.nome = obj.getNome();
@@ -50,7 +53,7 @@ public class UsuarioDTO {
         this.email = obj.getEmail();
         this.senha = obj.getSenha();
         this.criadoEm = obj.getCriadoEm();
-        this.tipoPessoa.stream().map(TipoPessoa::toEnum).collect(Collectors.toSet());
+        this.tipoPessoa = obj.getTipoPessoa().stream().map(TipoPessoa::getId).collect(Collectors.toSet());
     }
 
     public Long getId() {
